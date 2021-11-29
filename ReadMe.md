@@ -83,7 +83,7 @@ A considerable amount of data is available in the logs. Specifically, evidence o
 
   ![](./Images/HTTP_status_codes.png)
 
-    - From the Blue Team perspective, 4 status codes of `200 OK` after 436,504 `401 Unauthorized` may be concerning. It indicates that the attacker was able to successfully gain credentials and access restricted resources.
+  - From the Blue Team perspective, 4 status codes of `200 OK` after 436,504 `401 Unauthorized` may be concerning. It indicates that the attacker was able to successfully gain credentials and access restricted resources.
 
   - **Access to Sensitive Data in `secret_folder`**: From the Kibana Discover page, a query for the resource `/company_folders/secret_folder/` also displays that `connect_to_corp_server` file had been accessed.
 
