@@ -77,27 +77,27 @@ A considerable amount of data is available in the logs. Specifically, evidence o
 
   - **Identifying Unusually High Volume of Requests**: Logs indicate an unusual number of requests made to the URL `http://192.168.1.105/company_folder/secret_folder/`. The PacketBeat Flow graph from the dashboard shows that the attack began around 17:50. Note that `401 Unauthorized` is the top response and few `200 OK`, `207 Multi-Status`, and `404 Not Found` response status codes.
 
-  ![](../Images/request_count.png)
+  ![](./Images/request_count.png)
 
-  ![](../Images/packetbeat_flows.png)
+  ![](./Images/packetbeat_flows.png)
 
-  ![](../Images/HTTP_status_codes.png)
+  ![](./Images/HTTP_status_codes.png)
 
     - From the Blue Team perspective, 4 status codes of `200 OK` after 436,504 `401 Unauthorized` may be concerning. It indicates that the attacker was able to successfully gain credentials and access restricted resources.
 
   - **Access to Sensitive Data in `secret_folder`**: From the Kibana Discover page, a query for the resource `/company_folders/secret_folder/` also displays that `connect_to_corp_server` file had been accessed.
 
-  ![](../Images/sensitive_data.png)
+  ![](./Images/sensitive_data.png)
 
   - **HTTP Brute Force Attack**: Searching for `url.path: /company_folders/secret_folder/` shows conversations involving the sensitive data. Specifically, the results contain requests from the brute-forcing tool`Hydra`, identified under the `user_agent.original` section:
 
-      ![](../Images/hydra_evidence.png)
+      ![](./Images/hydra_evidence.png)
 
   - **WebDAV Connection & Upload of `shell.php`**: The logs also indicate that an unauthorized actor was able to access protected data in the `webdav` directory. The `passwd.dav` and `shell.php` was accessed with `GET` request. After the `shell.php` file was requested, an unknown connection was made from source IP `192.168.1.105` to `192.168.1.90:4444`.
 
-      ![](../Images/webdav.png)
+      ![](./Images/webdav.png)
 
-      ![](../Images/shell.png)
+      ![](./Images/shell.png)
 
 #### **Mitigation**
 
